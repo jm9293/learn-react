@@ -14,10 +14,10 @@ function LinkIconBtn({link}) {
   )
 }
 
-export default function CourseItem({title, description, thumbnail, isFavorite, link}) {
+export default function CourseItem({id, title, description, thumbnail, isFavorite, link, toggleFavorite}) {
   function handleFavorite(e) {
     e.stopPropagation();
-    alert(isFavorite ? '좋아요': '몰루?')
+    toggleFavorite(id);
   }
 
   function handleItemClick() {

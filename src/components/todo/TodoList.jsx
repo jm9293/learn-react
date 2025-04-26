@@ -1,9 +1,14 @@
-export default function TodoList( {todos = []}) {
-  const items = [...todos];
-  items.push({ id:2, label: '포트폴리오 사이트 만들기'})
+export default function TodoList( {todos = [], handleDeleteTodo, onToggleTodo}) {
+
   return (
     <ul>
-      {items.map(item => <li key={item.id}>{item.label}</li>)}
+      {todos.map(todo =>
+        <li key={todo.id}>
+          <input type="checkBox" checked={todo.done} onChange={(e) => onToggleTodo(todo.id, e.target.checked)}/>
+          <span>{todo.done ? (<del>{todo.text}</del>) : todo.text}</span>
+          <button onClick={() => handleDeleteTodo(todo.id)}>X</button>
+        </li>
+      )}
     </ul>
   )
 }

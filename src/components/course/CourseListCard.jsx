@@ -3,7 +3,7 @@ import Card from "../Card.jsx";
 import {Fragment} from "react";
 
 
-export default function CourseListCard({title, items}) {
+export default function CourseListCard({title, items, toggleFavorite}) {
 
   const lastIndex = items.length - 1;
 
@@ -12,7 +12,7 @@ export default function CourseListCard({title, items}) {
       <div className="courses">
         {items.map((item, index) =>
           <Fragment key={item.id} >
-            <CourseItem {...item}/>
+            <CourseItem {...item} toggleFavorite = {toggleFavorite}/>
             {lastIndex !== index && <hr className="divider" />}
           </Fragment>)}
       </div>

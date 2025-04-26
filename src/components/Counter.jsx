@@ -7,7 +7,9 @@ export default function Counter({addTotalCount}) {
   const [counter, setCounter] = useState(0)
 
   function handleCounter() {
-    setCounter(counter + 1)
+    setCounter((prevCounter) => prevCounter + 1)
+    setCounter((prevCounter) => prevCounter + 1)
+    setCounter((prevCounter) => prevCounter + 1)
     if (addTotalCount) {
       addTotalCount(1)
     }
