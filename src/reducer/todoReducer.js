@@ -17,12 +17,12 @@ export default function todoReducer(draft, action) {
       return draft.filter(todo => todo.id !== deleteId);
     }
     case 'done': {
-      const {id, checked} = action;
+      const {id, done} = action;
       const target = draft.find(item => item.id === id);
       if (target) {
-        target.done = checked;
+        target.done = done;
       }
-      break;
+      break
     }
     case 'reverse': {
       return draft.toReversed;

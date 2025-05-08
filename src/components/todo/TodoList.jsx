@@ -1,14 +1,33 @@
-export default function TodoList( {todos = [], handleDeleteTodo, onToggleTodo}) {
+import TodoItem from "./TodoItem.jsx";
+import {useContext, useMemo, useState} from "react";
+import {TodoContext, useTodos} from "../../context/TodoContext.jsx";
+
+export default function TodoList() {
+  const todos = useTodos();
+  const [isShowDone, setIsShowDone] = useState(false)
+
+  const {totalCount , doneCount} = useMemo(() => {
+    const doneCount = todos.filter((todo) => todo.done).length
+    return {totalCount: todos.length , doneCount}
+  }, [todos])
+
 
   return (
-    <ul>
-      {todos.map(todo =>
-        <li key={todo.id}>
-          <input type="checkBox" checked={todo.done} onChange={(e) => onToggleTodo(todo.id, e.target.checked)}/>
-          <span>{todo.done ? (<del>{todo.text}</del>) : todo.text}</span>
-          <button onClick={() => handleDeleteTodo(todo.id)}>X</button>
-        </li>
-      )}
-    </ul>
+    <>
+      <div>
+        <input type="checkbox" id="isShowDone" checked={isShowDone} onChange={() => setIsShowDone(!isShowDone)}/>
+        <label htmlFor="isShowDone">완료돤 항목 보기 ({doneCount}/{totalCount})</label>
+      </div>
+      <ul>
+        {todos.filter((todo) => {
+          return isShowDone ? todo.done : true
+        }).map(todo =>
+          <li key={todo.id}>
+            <TodoItem todo={todo}></TodoItem>
+          </li>
+        )}
+      </ul>
+    </>
+
   )
 }
