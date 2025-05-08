@@ -1,21 +1,20 @@
-import CourseItem from "./CourseItem";
-import Card from "../Card.jsx";
-import {Fragment} from "react";
+import CourseItem from './CourseItem';
+import Card from '../Card.jsx';
+import { Fragment } from 'react';
 
-
-export default function CourseListCard({title, items, toggleFavorite}) {
-
+export default function CourseListCard({ title, items, toggleFavorite }) {
   const lastIndex = items.length - 1;
 
   return (
     <Card title={title}>
       <div className="courses">
-        {items.map((item, index) =>
-          <Fragment key={item.id} >
-            <CourseItem {...item} toggleFavorite = {toggleFavorite}/>
+        {items.map((item, index) => (
+          <Fragment key={item.id}>
+            <CourseItem {...item} toggleFavorite={toggleFavorite} />
             {lastIndex !== index && <hr className="divider" />}
-          </Fragment>)}
+          </Fragment>
+        ))}
       </div>
     </Card>
-  )
+  );
 }

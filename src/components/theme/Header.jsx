@@ -1,9 +1,8 @@
-import {useContext} from "react";
-import {DarkModeContext} from "../../context/DarkModeContext.jsx";
+import { useContext } from 'react';
+import { DarkModeContext } from '../../context/DarkModeContext.jsx';
 
 export default function Header() {
-
-  const {darkMode, toggleDarkMode} = useContext(DarkModeContext)
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   return (
     // header--dark
@@ -14,4 +13,4 @@ export default function Header() {
       </button>
     </header>
   );
-};
+}

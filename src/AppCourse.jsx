@@ -1,11 +1,9 @@
-import './AppCourse.css'
-import CourseListCard from "./components/course/CourseListCard.jsx";
-import CourseForm from "./components/course/CourseForm.jsx";
-import {useState} from "react";
-import {useImmer} from "use-immer";
+import './AppCourse.css';
+import CourseListCard from './components/course/CourseListCard.jsx';
+import CourseForm from './components/course/CourseForm.jsx';
+import { useImmer } from 'use-immer';
 
 export default function AppCourse() {
-
   const [courses, updateCourses] = useImmer([
     {
       id: 0,
@@ -13,7 +11,7 @@ export default function AppCourse() {
       description: '웹 개발에 필요한 기본 지식을 배웁니다.',
       thumbnail: '/img/htmlcss.png',
       isFavorite: true,
-      link: 'https://inf.run/Kpnd'
+      link: 'https://inf.run/Kpnd',
     },
     {
       id: 1,
@@ -21,7 +19,7 @@ export default function AppCourse() {
       description: '쉽고! 알찬! 내용을 준비했습니다.',
       thumbnail: '/img/js.png',
       isFavorite: false,
-      link: 'https://inf.run/Kpnd'
+      link: 'https://inf.run/Kpnd',
     },
     {
       id: 2,
@@ -29,11 +27,11 @@ export default function AppCourse() {
       description: '포트폴리오 사이트를 만들고 배포해 보세요.',
       thumbnail: '/img/portfolio.png',
       isFavorite: true,
-      link: 'https://inf.run/YkAN'
-    }
-  ])
+      link: 'https://inf.run/YkAN',
+    },
+  ]);
 
-  const favoriteCourse = courses.filter(item => item.isFavorite)
+  // const favoriteCourse = courses.filter(item => item.isFavorite);
 
   function toggleFavorite(id) {
     updateCourses(draft => {
@@ -45,11 +43,17 @@ export default function AppCourse() {
     });
   }
 
-  return (<>
-    <main style={{flexDirection: 'column', gap: '1rem'}}>
-      <CourseForm />
-      <CourseListCard title="강의 목록" items={courses} toggleFavorite={toggleFavorite}/>
-      {/*<CourseListCard title="관심 강의" items={favoriteItems}/>*/}
-    </main>
-  </>);
+  return (
+    <>
+      <main style={{ flexDirection: 'column', gap: '1rem' }}>
+        <CourseForm />
+        <CourseListCard
+          title="강의 목록"
+          items={courses}
+          toggleFavorite={toggleFavorite}
+        />
+        {/*<CourseListCard title="관심 강의" items={favoriteItems}/>*/}
+      </main>
+    </>
+  );
 }
